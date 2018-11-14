@@ -370,7 +370,7 @@ func (g *generator) generateClient(service *google_protobuf.ServiceDescriptorPro
 
 	g.P(fmt.Sprintf("export class %sClient extends grpcTs.Client {", gen.CamelCase(*service.Name)))
 	g.In()
-	g.P("constructor(host: string, credentials: grpc.ChannelCredentials) {")
+	g.P("constructor(host: string, credentials: grpc.ChannelCredentials = grpc.credentials.createInsecure()) {")
 	g.In()
 	g.P(fmt.Sprintf("const protoPath = '%s';", protoFileName))
 	g.P(fmt.Sprintf("const includeDirs = [path.join(__dirname, '%s')];", g.protoPathRelative(protoFileName)))
